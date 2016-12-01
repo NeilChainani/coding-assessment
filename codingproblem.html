@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<script src="jquery.js"></script>
+<script>
+$.getJSON( "https://izenda.herokuapp.com/patients", function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    items.push( "<tr id='" + key + "'><td>" + val.first_name + " " + val.last_name + "</td><td>" + val.gender  + "</td><td>"+ val.drug +"</td><td>"+ val.street_address + "," + val.state+"</td></tr>" );
+  });
+ 
+  $( "<div/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( "table" );
+});
+
+</script>
+</head>
+<body>
+<table>
+</table>
+</body>
+</html>
